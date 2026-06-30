@@ -142,18 +142,21 @@ export const LEGEND_ITEMS = [
 
 export const SATELLITE_LAYERS: Record<Year, { url: string; attribution: string; label: string }> = {
   2016: {
-    url: 'https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/MapServer/tile/18966/{z}/{y}/{x}',
+    // Wayback WB_2016_R22 — resolved internal tile ID (no redirect)
+    url: 'https://wayback.maptiles.arcgis.com/arcgis/rest/services/world_imagery/mapserver/tile/31144/{z}/{y}/{x}',
     attribution: '© Esri, Maxar, Earthstar Geographics (2016 Wayback)',
     label: '2016 Satellite Imagery',
   },
   2021: {
-    url: 'https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/MapServer/tile/26120/{z}/{y}/{x}',
+    // Wayback WB_2021_R17 — resolved internal tile ID (no redirect)
+    url: 'https://wayback.maptiles.arcgis.com/arcgis/rest/services/world_imagery/mapserver/tile/32645/{z}/{y}/{x}',
     attribution: '© Esri, Maxar, Earthstar Geographics (2021 Wayback)',
     label: '2021 Satellite Imagery',
   },
   2026: {
-    url: 'https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/MapServer/tile/10842/{z}/{y}/{x}',
-    attribution: '© Esri, Maxar, Earthstar Geographics (Current 2026 Wayback)',
+    // Wayback WB_2026_R05 — resolved internal tile ID (no redirect)
+    url: 'https://wayback.maptiles.arcgis.com/arcgis/rest/services/world_imagery/mapserver/tile/7110/{z}/{y}/{x}',
+    attribution: '© Esri, Maxar, Earthstar Geographics (2026 Wayback)',
     label: '2026 Satellite Imagery',
   },
 };
