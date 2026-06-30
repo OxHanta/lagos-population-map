@@ -1,0 +1,158 @@
+/* ============================================
+   Lagos Population Density Map — Global CSS
+   Design System: Dark OLED + Heat Map Style
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap');
+
+/* ─── Reset & Base ─── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* Dark OLED Palette */
+  --bg-base:       #050A14;
+  --bg-surface:    #0A1020;
+  --bg-panel:      rgba(8, 15, 30, 0.88);
+  --bg-card:       rgba(255, 255, 255, 0.04);
+  --bg-hover:      rgba(255, 255, 255, 0.07);
+
+  /* Accent */
+  --accent-primary: #00D4FF;
+  --accent-glow:    rgba(0, 212, 255, 0.25);
+  --accent-purple:  #667eea;
+  --accent-violet:  #764ba2;
+
+  /* Text */
+  --text-primary:   #F0F4FF;
+  --text-secondary: #7080A0;
+  --text-muted:     #404860;
+
+  /* Border */
+  --border-subtle:  rgba(0, 212, 255, 0.12);
+  --border-medium:  rgba(0, 212, 255, 0.25);
+  --border-bright:  rgba(0, 212, 255, 0.5);
+
+  /* Density colours */
+  --density-extreme:   #FF1744;
+  --density-very-high: #FF6D00;
+  --density-high:      #FFD600;
+  --density-medium:    #00E676;
+  --density-low:       #2979FF;
+  --density-rural:     #76FF03;
+
+  /* Radii */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-pill: 999px;
+
+  /* Transitions */
+  --transition: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background: var(--bg-base);
+  color: var(--text-primary);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border-medium); border-radius: 999px; }
+
+/* ─── Leaflet overrides ─── */
+.leaflet-container {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg-base);
+}
+
+.leaflet-control-attribution {
+  background: rgba(5, 10, 20, 0.8) !important;
+  color: var(--text-muted) !important;
+  font-size: 10px !important;
+  border-top: 1px solid var(--border-subtle) !important;
+  backdrop-filter: blur(8px);
+}
+
+.leaflet-control-attribution a {
+  color: var(--accent-primary) !important;
+}
+
+.leaflet-control-zoom {
+  border: 1px solid var(--border-subtle) !important;
+  border-radius: var(--radius-md) !important;
+  overflow: hidden !important;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.6) !important;
+  background: var(--bg-panel) !important;
+  backdrop-filter: blur(16px);
+}
+
+.leaflet-control-zoom a {
+  background: transparent !important;
+  color: var(--text-primary) !important;
+  border-bottom: 1px solid var(--border-subtle) !important;
+  font-size: 16px !important;
+  transition: background var(--transition), color var(--transition);
+}
+
+.leaflet-control-zoom a:hover {
+  background: var(--bg-hover) !important;
+  color: var(--accent-primary) !important;
+}
+
+.leaflet-control-zoom-in { border-radius: 0 !important; }
+.leaflet-control-zoom-out { border-bottom: none !important; border-radius: 0 !important; }
+
+/* ─── Custom popup ─── */
+.leaflet-popup-content-wrapper {
+  background: var(--bg-panel) !important;
+  border: 1px solid var(--border-medium) !important;
+  border-radius: var(--radius-lg) !important;
+  backdrop-filter: blur(24px) !important;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.7), 0 0 0 1px var(--border-subtle) !important;
+  padding: 0 !important;
+}
+
+.leaflet-popup-content {
+  margin: 0 !important;
+  min-width: 220px !important;
+}
+
+.leaflet-popup-tip-container {
+  display: none;
+}
+
+.leaflet-popup-close-button {
+  color: var(--text-secondary) !important;
+  font-size: 18px !important;
+  top: 10px !important;
+  right: 12px !important;
+  z-index: 10;
+  transition: color var(--transition);
+}
+.leaflet-popup-close-button:hover {
+  color: var(--accent-primary) !important;
+  background: transparent !important;
+}
+
+/* ─── Scale bar ─── */
+.leaflet-control-scale-line {
+  border-color: var(--border-medium) !important;
+  color: var(--text-secondary) !important;
+  background: var(--bg-panel) !important;
+  font-size: 10px !important;
+  border-radius: 4px;
+}
