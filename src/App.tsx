@@ -55,7 +55,7 @@ function SatelliteTileLayer({ year }: { year: Year }) {
   )
 }
 
-// ─── LGA Label + Colored Polygon (40% opacity) ───────────────────────────────
+// ─── LGA Overlay: Colored Polygon + Smart Label ──────────────────────────────
 interface LGAOverlayProps {
   name: string
   year: Year
@@ -125,9 +125,38 @@ function LGAOverlay({ name, year }: LGAOverlayProps) {
     </div>
   )
 
+  // ─── Calculate centroid for accurate label placement ───────────────────────
+  const getCentroid = (coords: any): [number, number] => {
+    if (!coords || coords.length === 0) return [data.lat, data.lng]
+
+    let latSum = 0
+    let lngSum = 0
+    let count = 0
+
+    coords.forEach((ring: any) => {
+      if (Array.isArray(ring[0])) {
+        ring.forEach((point: [number, number]) => {
+          latSum += point[0]
+          lngSum += point[1]
+          count++
+        })
+      } else {
+        latSum += ring[0]
+        lngSum += ring[1]
+        count++
+      }
+    })
+
+    return count > 0
+      ? [latSum / count, lngSum / count]
+      : [data.lat, data.lng]
+  }
+
+  const labelPosition = getCentroid(positions)
+
   const labelIcon = L.divIcon({
     className: '',
-    html: `<div class=\"lga-label\">${name}</div>`,
+    html: `<div class="lga-label">${name}</div>`,
     iconAnchor: [0, 0],
   })
 
@@ -144,13 +173,13 @@ function LGAOverlay({ name, year }: LGAOverlayProps) {
 
   return (
     <>
-      {/* Colored LGA polygon with 40% opacity + density-colored border */}
+      {/* Colored LGA polygon with 40% opacity + density border */}
       <Polygon
         positions={positions}
         pathOptions={{
-          color: color,           // density color border
+          color: color,
           fillColor: color,
-          fillOpacity: 0.4,       // 40% opacity fill
+          fillOpacity: 0.4,
           weight: 2.5,
           opacity: 0.95,
         }}
@@ -158,9 +187,9 @@ function LGAOverlay({ name, year }: LGAOverlayProps) {
         <Popup className="lga-popup">{popupContent}</Popup>
       </Polygon>
 
-      {/* LGA name label */}
+      {/* Clean floating label positioned at polygon centroid */}
       <Marker
-        position={[data.lat, data.lng]}
+        position={labelPosition}
         icon={labelIcon}
         interactive={false}
       />
@@ -222,7 +251,7 @@ export default function App() {
           }}
         />
 
-        {/* Per-LGA invisible click areas + name labels */}
+        {/* Per-LGA colored polygons + centroid labels */}
         {Object.keys(lgaData).map(name => (
           <LGAOverlay key={`${name}-${year}`} name={name} year={year} />
         ))}
