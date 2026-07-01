@@ -55,7 +55,7 @@ function SatelliteTileLayer({ year }: { year: Year }) {
   )
 }
 
-// ─── LGA Label + Invisible clickable overlay ───────────────────────────────
+// ─── LGA Label + Colored Polygon (40% opacity) ───────────────────────────────
 interface LGAOverlayProps {
   name: string
   year: Year
@@ -127,12 +127,11 @@ function LGAOverlay({ name, year }: LGAOverlayProps) {
 
   const labelIcon = L.divIcon({
     className: '',
-    html: `<div class="lga-label">${name}</div>`,
+    html: `<div class=\"lga-label\">${name}</div>`,
     iconAnchor: [0, 0],
   })
 
   if (!positions) {
-    // Fallback: marker-only (no polygon hit area)
     return (
       <Marker
         position={[data.lat, data.lng]}
@@ -145,14 +144,15 @@ function LGAOverlay({ name, year }: LGAOverlayProps) {
 
   return (
     <>
-      {/* Invisible click overlay polygon */}
+      {/* Colored LGA polygon with 40% opacity + density-colored border */}
       <Polygon
         positions={positions}
         pathOptions={{
-          color: 'transparent',
+          color: color,           // density color border
           fillColor: color,
-          fillOpacity: 0.0,
-          weight: 0,
+          fillOpacity: 0.4,       // 40% opacity fill
+          weight: 2.5,
+          opacity: 0.95,
         }}
       >
         <Popup className="lga-popup">{popupContent}</Popup>
