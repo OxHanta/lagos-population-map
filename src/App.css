@@ -6,7 +6,7 @@
   right: 0;
   z-index: 800;
   padding: 18px 24px 32px;
-  background: linear-gradient(to bottom, rgba(5,10,20,0.98) 0%, rgba(5,10,20,0.7) 70%, transparent 100%);
+  background: linear-gradient(to bottom, rgba(5, 10, 20, 0.98) 0%, rgba(5, 10, 20, 0.7) 70%, transparent 100%);
   pointer-events: none;
   display: flex;
   align-items: center;
@@ -51,7 +51,7 @@
   -webkit-backdrop-filter: blur(20px) saturate(1.5);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
-  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255,255,255,0.04);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
 /* ─── Stat Panel (right) ─── */
@@ -107,7 +107,7 @@
   align-items: center;
   padding: 8px 12px;
   gap: 8px;
-  border-bottom: 1px solid rgba(255,255,255,0.03);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
   transition: background var(--transition);
 }
 
@@ -296,7 +296,7 @@
   padding: 6px;
   display: flex;
   gap: 4px;
-  box-shadow: 0 8px 40px rgba(0,0,0,0.7), 0 0 0 1px rgba(0,212,255,0.08);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(0, 212, 255, 0.08);
 }
 
 .year-btn {
@@ -304,7 +304,7 @@
   border-radius: var(--radius-pill);
   border: 1px solid transparent;
   background: transparent;
-  color: rgba(255,255,255,0.65);
+  color: rgba(255, 255, 255, 0.65);
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
@@ -424,8 +424,17 @@
 }
 
 @keyframes pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.4; transform: scale(0.7); }
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.4;
+    transform: scale(0.7);
+  }
 }
 
 /* ─── LGA count badge ─── */
@@ -480,8 +489,13 @@
 }
 
 @media (max-width: 480px) {
-  .stat-panel { display: none; }
-  .layer-panel { display: none; }
+  .stat-panel {
+    display: none;
+  }
+
+  .layer-panel {
+    display: none;
+  }
 
   .year-bar {
     bottom: 24px;
@@ -500,8 +514,8 @@
   white-space: nowrap;
   pointer-events: none;
   backdrop-filter: blur(4px);
-  border: 1px solid rgba(255,255,255,0.12);
-  text-shadow: 0 1px 3px rgba(0,0,0,0.9);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
   transform: translate(-50%, -50%);
   display: inline-block;
   user-select: none;
@@ -512,7 +526,7 @@
   background: rgba(8, 14, 30, 0.96);
   border: 1px solid rgba(0, 212, 255, 0.25);
   border-radius: 12px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.6);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(20px);
 }
 
@@ -524,4 +538,3 @@
   margin: 0;
   min-width: 200px;
 }
-

@@ -156,7 +156,7 @@ function LGAOverlay({ name, year }: LGAOverlayProps) {
 
   const labelIcon = L.divIcon({
     className: '',
-    html: `<div class="lga-label">${name}</div>`,
+    html: `<div class="lga-label">${name.toUpperCase()}</div>`,
     iconAnchor: [0, 0],
   })
 
